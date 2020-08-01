@@ -56,9 +56,10 @@ The included translation file may isn't up-to-date anymore, when you download th
 the translation, simple copy and paste the source file (See the path under `How to use`) into the 
 root `data` directory.
 
-Now you need to close the current instance (using the red button below) and re-open it using the 
-language code before. Tip: You don't need to fill out the author username and email address again, 
-because they will be taken over from the respective source file.
+Now you need to close the current workspace using the red button below (if not already done). 
+Re-Open your workspace using the language code before. Tip: You don't need to fill out the author 
+username or E-Mail address again since they will be taken over from the generated translation file
+before, unless you want to change this information.
 
 ### Port is already in use
 > Error: listen EADDRINUSE: address already in use :::8080
