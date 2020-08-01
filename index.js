@@ -196,19 +196,31 @@ register("GET", "/", function() {
     let count = 1;
     let length = 0;
     for(let key in strings.target.strings) {
+        let button = null;
         let parentClass = "mb-3 row";
         let textareaClass = "form-control";
+
         if(strings.target.strings[key] !== strings.source.strings[key]) {
             length++;
             parentClass += " translated";
             textareaClass += " is-valid";
+        } else if("marked" in workspace && workspace.marked.indexOf(key) >= 0) {
+            length++;
+            parentClass += " translated";
+            textareaClass += " is-valid";
+        } else {
+            button = `<button type="button" class="btn btn-outline-success" data-type="mark" data-toggle="tooltip" title="Mark as Translated" tabindex="-1"></button>`;
         }
 
         forms.push(`
             <div class="${parentClass}">
                 <label for="${key}" class="col-sm-2 col-form-label">${key}</label>
                 <div class="col-sm-9">
-                    <textarea id="${key}" name="string[${key}]" placeholder="${strings.source.strings[key]}" class="${textareaClass}" rows="1" style="height:38px;resize:none;">${strings.target.strings[key]}</textarea>
+                    ${button === null? '': '<div class="input-group">'}
+                        <textarea id="${key}" name="string[${key}]" placeholder="${strings.source.strings[key]}" class="${textareaClass}" rows="1" 
+                            style="height:38px;resize:none;">${strings.target.strings[key]}</textarea>
+                        ${button === null? '': button}
+                    ${button === null? '': '</div>'}
                 </div>
                 <div class="col-sm-1 text-center text-muted" style="line-height:38px;">
                     ${count++}
@@ -288,7 +300,7 @@ register("POST", "/create", function(data) {
 });
 
 /*
- |  ROUTE :: CREATE
+ |  ROUTE :: TRANSLATE
  |  @since  1.0.0
  */
 register("POST", "/translate", function(data) {
@@ -332,6 +344,30 @@ register("POST", "/translate", function(data) {
         return response(200, result[0][single], "text/plain");
     }
     return response(200, JSON.stringify(result), "application/json");
+});
+
+/*
+ |  ROUTE :: POST @ MARK
+ |  @since  1.0.0
+ */
+register("POST", "/mark", function(data) {
+    if(!("field" in data)) {
+        return response(404, "String not found", "text/plain");
+    }
+    
+    let real = data["field"].substring(7, data["field"].length-1);
+    if(!(real in strings.source.strings)) {
+        return response(404, "String not found", "text/plain");
+    }
+
+    if(!("marked" in workspace)) {
+        workspace.marked = [];
+    }
+    workspace.marked.push(real);
+    
+    // Write & Return
+    fs.writeFileSync(`data/workspace.json`, JSON.stringify(workspace, null, 4), "utf-8");
+    return response(200, "String has been marked", "text/plain");
 });
 
 // Ready
