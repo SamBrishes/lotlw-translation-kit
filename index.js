@@ -51,9 +51,33 @@ function redirect(path, status, message) {
     laststatus.status = !!status;
     laststatus.message = message;
 
-    server.response.writeHead(301, {
-        "Location": path
+    server.response.writeHead(302, {
+        "Location": path,
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Expires": "-1",
+        "Pragma": "no-cache",
     });
+    server.response.end();
+    return true;
+}
+
+
+/*
+ |  HANDLE RESPONSE
+ |  @since  1.0.0
+ */
+function response(status, message, type = "text/plain") {
+    server.response.writeHead(status, {
+        "Content-Type": type,
+        "Content-Length": (message || "").length,
+        "Cache-Control": "private, no-cache, no-store, must-revalidate",
+        "Expires": "-1",
+        "Pragma": "no-cache",
+    });
+
+    if(typeof message === "string" && message.length > 0) {
+        server.response.write(message);
+    }
     server.response.end();
     return true;
 }
@@ -81,20 +105,6 @@ function render(file) {
     laststatus.status = null;
     laststatus.message = null;
     return content;
-}
-
-/*
- |  HANDLE RESPONSE
- |  @since  1.0.0
- */
-function response(status, message, type = "text/plain") {
-    server.response.statusCode = status;
-    server.response.setHeader("Content-Type", type);
-    if(typeof message === "string" && message.length > 0) {
-        server.response.write(message);
-    }
-    server.response.end();
-    return true;
 }
 
 /*
@@ -216,15 +226,15 @@ register("GET", "/", function() {
 });
 
 /*
- |  ROUTE :: GET @ DELETE
+ |  ROUTE :: GET @ CLOSE
  |  @since  1.0.0
  */
-register("GET", "/delete", function() {
+register("GET", "/close", function() {
     if(fs.existsSync("data/workspace.json")) {
         fs.unlinkSync("data/workspace.json");
     }
     workspace = { };
-    return redirect("/", true, "The Workspace has been cleared.");
+    return redirect("/", true, "The Workspace has been closed.");
 });
 
 /*
@@ -239,25 +249,39 @@ register("POST", "/create", function(data) {
         return redirect("/", false, "The translation code is invalid.");
     }
 
-    // Add Workspace Data
+    // Create Workspace Data
     workspace.language = data["translation[code]"];
     workspace.author = data["translation[author]"] || ""; 
     workspace.email = data["translation[email]"] || ""; 
 
-    // Write Workspace
-    fs.writeFileSync(`data/workspace.json`, JSON.stringify(workspace, null, 4), "utf-8");
+    // Create Language Data
+    let language = Object.assign({ }, workspace);
+    language.strings = Object.assign({ }, strings.source.strings);
 
-    // Write Language File
-    let language = { };
     if(fs.existsSync(`data/${workspace.language}.json`)) {
-        language = JSON.parse(fs.readFileSync(`data/${workspace.language}.json`, "utf-8"));
-    } else {
-        language = JSON.parse(fs.readFileSync(`data/en.json`, "utf-8"));
+        let translation = JSON.parse(fs.readFileSync(`data/${workspace.language}.json`, "utf-8"));
+
+        // Get already translated strings
+        for(let key in translation.strings) {
+            if(key in language.strings && translation.strings[key].length > 0) {
+                language.strings[key] = translation.strings[key];
+            }
+        }
+        
+        // Get Author and eMail
+        if(workspace.author.length === 0) {
+            workspace.author = translation.author || "";
+            language.author = translation.author || "";
+        }
+        if(workspace.email.length === 0) {
+            workspace.email = translation.email || "";
+            language.email = translation.email || "";
+        }
     }
 
-    let temp = Object.assign(workspace, { });
-        temp.strings = language.strings;
-    fs.writeFileSync(`data/${workspace.language}.json`, JSON.stringify(temp, null, 4), "utf-8");
+    // Write Files
+    fs.writeFileSync(`data/workspace.json`, JSON.stringify(workspace, null, 4), "utf-8");
+    fs.writeFileSync(`data/${workspace.language}.json`, JSON.stringify(language, null, 4), "utf-8");
 
     // Redirect
     return redirect("/", true, "The Workspace has been created.");

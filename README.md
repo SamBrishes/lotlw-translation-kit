@@ -11,7 +11,7 @@ Requirements
 - node.js v12.x.x
 
 
-How to Translate
+How to translate
 ----------------
 The script doesn't depend on any external dependencies, except node.js itself. You can download and 
 install node.js on the [official website](https://nodejs.org/en/). Keep sure, that the installation 
@@ -34,8 +34,8 @@ Click now "Create Translation". You will be redirected to the translation page w
 available translation strings. You can start translating now, each change will be stored 
 automatically, so you don't need to search after a "Submit" button ;)
 
-How to use the Translation
---------------------------
+How to use
+----------
 **Light of the locked World** doesn't support different languages at the moment, so you need to 
 do the following workaround:
 
@@ -50,6 +50,17 @@ do the following workaround:
 
 Errors and Solutions
 --------------------
+
+### How to update the english source file
+The included translation file may isn't up-to-date anymore, when you download this kit. To update
+the translation, simple copy and paste the source file (See the path under `How to use`) into the 
+root `data` directory.
+
+Now you need to close the current instance (using the red button below) and re-open it using the 
+language code before. Tip: You don't need to fill out the author username and email address again, 
+because they will be taken over from the respective source file.
+
+### Port is already in use
 > Error: listen EADDRINUSE: address already in use :::8080
 
 This means, that some application on your computer already uses the 8080 port. You can either close 
