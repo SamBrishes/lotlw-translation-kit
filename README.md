@@ -53,9 +53,9 @@ Tips and Solutions
 
 ### Move between the Strings
 You may already know this "trick", but ... However... You can easily jump from string to string 
-using the &lt;Tab&gt; key on your keyboard, jump to the opposite direction can be achieved by 
-pressing and holding &lt;Shift&gt; while pressing &lt;Tab&gt;. That's may a bit faster then using 
-the mouse pointer / button.
+using the &lt;Tab&gt; key on your keyboard, jumping to the opposite direction can be achieved by 
+pressing and holding &lt;Shift&gt; while pressing &lt;Tab&gt;. That should be a bit faster then 
+using the mouse pointer / button.
 
 ### How to update the english source file
 The included translation file may isn't up-to-date anymore, when you download this kit. To update
