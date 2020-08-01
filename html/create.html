@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JSON Translation Helper</title>
+
+		<link rel="stylesheet" href="/html/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 col-lg-6">
+                    {{lasterror}}
+
+                    <form method="post" action="/create" class="card shadow-sm">
+                        <div class="card-header bg-white py-3">
+                            <b>Create a new Translation</b>
+                        </div>
+                        <div class="card-body">
+                            <div class="my-3 row">
+                                <label for="translation-code" class="col-sm-4 col-form-label">Language Code</label>
+                                <div class="col-sm-8">
+                                    <input id="translation-code" type="text" name="translation[code]" placeholder="Exmaple: de" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="translation-author" class="col-sm-4 col-form-label">Author Username</label>
+                                <div class="col-sm-8">
+                                    <input id="translation-author" type="text" name="translation[author]" placeholder="(Optional) Author Name" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="translation-email" class="col-sm-4 col-form-label">Author E-Mail</label>
+                                <div class="col-sm-8">
+                                    <input id="translation-email" type="text" name="translation[email]" placeholder="(Optional) Author eMail" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-right bg-white">
+                            <button class="btn btn-primary" name="submit">Create Translation</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JSON Translation Helper</title>
+
+        <link rel="stylesheet" href="/html/css/bootstrap.min.css" />
+        <style type="text/css">
+            form.hide-translated .translated {
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="/html/js/script.js"></script>
+	</head>
+	<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom">
+            <div class="container">
+                <span class="navbar-hide pt-3 pb-2">
+                    <div class="form-check text-white">
+                        <input id="hideTranslated" class="form-check-input" type="checkbox" value="1" checked />
+                        <label for="hideTranslated" class="form-check-label">Hide Translated</label>
+                    </div>
+                </span>
+                <div class="navbar-count text-white">
+                    <span data-value="length">{{length}}</span>
+                    <span>/</span>
+                    <span data-value="count">{{count}}</span>
+                </div>
+                <div class="navbar-action">
+                    <a href="/delete" class="btn btn-danger btn-sm">Close Workspace</a>
+                </div>
+            </div>
+        </nav>
+
+		<div class="container" style="margin-top:5rem;margin-bottom:10rem;">
+            <div class="row justify-content-center">
+                <div class="col-12 py-3">
+                    {{lasterror}}
+
+                    <form method="post" action="/translate" class="card shadow-sm">
+                        <div class="card-body">
+                            {{strings}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
