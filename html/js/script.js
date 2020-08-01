@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.classList.add("is-valid");
 
                     let parent = this;
-                    while(!parent.parentElement.classList.contains("row")) {
+                    while(!parent.classList.contains("row")) {
                         parent = parent.parentElement;
                     }
                     parent.classList.add("translated");
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.classList.remove("is-valid");
 
                     let parent = this;
-                    while(!parent.parentElement.classList.contains("row")) {
+                    while(!parent.classList.contains("row")) {
                         parent = parent.parentElement;
                     }
                     parent.classList.remove("translated");
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Mark as Translate
                 item.previousElementSibling.classList.add("is-valid");
                 let parent = item.previousElementSibling;
-                while(!parent.parentElement.classList.contains("row")) {
+                while(!parent.classList.contains("row")) {
                     parent = parent.parentElement;
                 }
                 parent.classList.add("translated");
