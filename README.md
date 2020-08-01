@@ -13,7 +13,7 @@ Requirements
 
 How to Translate
 ----------------
-The script doesn't depent on any external dependencies, except node.js itself. You can download and 
+The script doesn't depend on any external dependencies, except node.js itself. You can download and 
 install node.js on the [official website](https://nodejs.org/en/). Keep sure, that the installation 
 path is also available within the PATH [environment variable](https://stackoverflow.com/a/27864253),
 which should be done by the installer automatically.
@@ -26,7 +26,7 @@ node index.js
 ```
 
 Now open your web browser and visit `localhost:8080`, which shows the translation kit. Create a new 
-translation by enter the translation code (for exmaple `de` for german or `fr` for french). You can 
+translation by enter the translation code (for example `de` for german or `fr` for french). You can 
 also optionally enter your username or email address, but both values want to be shown within the 
 game and are just stored in the generated JSON file (within the `data` directory).
 
