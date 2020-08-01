@@ -12,8 +12,9 @@ Requirements
 How to Translate
 ----------------
 The script doesn't depent on any external dependencies, except node.js itself. You can download and 
-install node.js on the [official website](https://nodejs.org/en/). Keep sure, that you also attached 
-the script to your global PATH environment variable (which should be automatically done).
+install node.js on the [official website](https://nodejs.org/en/). Keep sure, that the installation 
+path is also available within the PATH [environment variable](https://stackoverflow.com/a/27864253),
+which should be done by the installer automatically.
 
 Start your Windows Terminal (CMD.exe), visit this downloaded git package and run the following 
 command, which starts a local web server (you may need to additionally accept this on Windows).
