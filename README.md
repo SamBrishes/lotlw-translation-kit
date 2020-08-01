@@ -5,9 +5,11 @@ This repository also contains a work-in-progress german translation for the curr
 
 This tool is still Work in Progress!
 
+
 Requirements
 ------------
 - node.js v12.x.x
+
 
 How to Translate
 ----------------
@@ -44,3 +46,15 @@ do the following workaround:
     - For Example: `data/de.json`
 4. Rename your translation file into `en.json`
 5. Start the Game and have fun!
+
+
+Errors and Solutions
+--------------------
+> Error: listen EADDRINUSE: address already in use :::8080
+
+This means, that some application on your computer already uses the 8080 port. You can either close 
+Slack, Skype, Microsoft Teams and may all Chat and Interaction platforms, which are currently open, 
+or you change the listener Port on the node script itself.
+
+To do this, just open the `index.js` file and go to the last line, where you'll find the main call
+`instance.listen(8080);`. Just change the port within this function, for example into `8081`.
