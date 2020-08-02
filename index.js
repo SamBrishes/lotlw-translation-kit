@@ -193,7 +193,7 @@ register("GET", "/", function() {
 
     // Prepare Strings
     let forms = [];
-    let count = 1;
+    let count = 0;
     let length = 0;
     for(let key in strings.target.strings) {
         let button = null;
@@ -223,7 +223,7 @@ register("GET", "/", function() {
                     ${button === null? '': '</div>'}
                 </div>
                 <div class="col-sm-1 text-center text-muted" style="line-height:38px;">
-                    ${count++}
+                    ${++count}
                 </div>
             </div>
         `);
