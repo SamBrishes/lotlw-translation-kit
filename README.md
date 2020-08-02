@@ -2,14 +2,14 @@ Light of the Locked World - Translation Kit
 ===========================================
 > LOTLW Version: 0.4.5<br />
 > German Translation Version: 0.4.5<br />
-> [Light of the Locked World on zuurix.com](https://zuurix.com/light-of-the-locked-world/)<br />
-> [Get Light of the Locked World on Steam](https://store.steampowered.com/app/1097560/Light_of_the_Locked_World/)
 
 A small node.js-written translation kit for Zuurix' new indie game **Light of the locked World**. 
 This repository also contains a work-in-progress german translation for the demo version 0.4.5.
 
 This tool is still Work in Progress!
 
+- **[Visit Light of the Locked World on zuurix.com](https://zuurix.com/light-of-the-locked-world/)**
+- **[Get Light of the Locked World Demo on Steam](https://store.steampowered.com/app/1097560/Light_of_the_Locked_World/)**
 
 Requirements
 ------------
