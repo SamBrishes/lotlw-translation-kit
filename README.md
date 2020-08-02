@@ -9,7 +9,7 @@ This repository also contains a work-in-progress german translation for the demo
 This tool is still Work in Progress!
 
 - **[Visit Light of the Locked World on zuurix.com](https://zuurix.com/light-of-the-locked-world/)**
-- **[Get Light of the Locked World Demo on Steam](https://store.steampowered.com/app/1097560/Light_of_the_Locked_World/)**
+- **[Get the Light of the Locked World Demo on Steam](https://store.steampowered.com/app/1097560/Light_of_the_Locked_World/)**
 
 Requirements
 ------------
